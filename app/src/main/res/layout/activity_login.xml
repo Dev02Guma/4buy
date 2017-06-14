@@ -39,16 +39,16 @@ tools:context="com.example.alderhernandez.a4buy.LoginActivity">
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/txtUsuerio"
+                android:id="@+id/txtUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/usuario"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
                 android:inputType="text"
                 android:maxLength="10"
                 android:maxLines="1"
-                android:text=""/>
+                android:text="alder"
+                android:textColor="@color/white"
+                android:textColorHint="@color/textoBlanco" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -57,21 +57,22 @@ tools:context="com.example.alderhernandez.a4buy.LoginActivity">
             android:textColorHint="@color/white"
             android:textColor="@color/white"
             android:color="#ffff"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="15dp">
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/txtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/contrase_a"
                 android:imeActionId="@+id/login"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/textoBlanco"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:text="" />
+                android:text="123" />
         </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/acceder"

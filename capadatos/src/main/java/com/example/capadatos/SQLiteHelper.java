@@ -21,9 +21,9 @@ public final class SQLiteHelper extends SQLiteOpenHelper{
     private static final int flag = SQLiteDatabase.NO_LOCALIZED_COLLATORS;//database version
     //private static final int flag = 102;//database version
     //private static final int flag = 1;
-    private static final int DATABASE_VERSION = 1;
+    //private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_CREATE = "CREATE TABLE USUARIO ( IDUSUARIO  TEXT,USUARIO  TEXT, NOMBRE  TEXT, ESTADO  TEXT)";
+    //private static final String TABLE_CREATE = "CREATE TABLE USUARIO ( IDUSUARIO  TEXT,USUARIO  TEXT, NOMBRE  TEXT, ESTADO  TEXT)";
 
     private final String path;
     public SQLiteHelper(String path, Context context) throws IOException
@@ -127,8 +127,8 @@ public final class SQLiteHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_CREATE);
-        Log.d("", "onCreate: entro al creado");
+        /*db.execSQL(TABLE_CREATE);
+        Log.d("", "onCreate: entro al creado");*/
 
     }
     

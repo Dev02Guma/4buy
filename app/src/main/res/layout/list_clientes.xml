@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/listPreferredItemHeight"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="8dp">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="15dp"
+            android:adjustViewBounds="false"
+            android:tint="@color/black"
+            android:src="@drawable/design_ic_visibility"
+            />
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/lst_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="CODIGO"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/lst_direccion"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:text="CLIENTE" />
+            <TextView
+                android:id="@+id/lst_cedula"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:text="COBRO" />
+        </LinearLayout>
+    </TableRow>
+    </TableLayout>
+</RelativeLayout>
