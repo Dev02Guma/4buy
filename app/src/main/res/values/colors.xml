@@ -9,4 +9,10 @@
     <color name="fondo_azul">#ff285e8e</color>
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
+    <color name="red">#FE0D02</color>
+
+    <color name="INN_DARK_MORADO">#5D2367</color>
+    <color name="INN_LIGHT_MORADO">#7C2181</color>
+    <color name="INN_DARK_NARANJA">#E28A10</color>
+    <color name="INN_LIGHT_NARANJA">#F4990D</color>
 </resources>

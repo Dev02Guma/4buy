@@ -21,10 +21,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
         <activity
-            android:name=".Borrar"
-            android:label="@string/title_activity_borrar"></activity>
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".PedidoActivity"
+            android:label="@string/title_activity_pedido" />
+        <activity
+            android:name=".PedidoActivity2"
+            android:label="@string/title_activity_pedido2" />
+        <activity
+            android:name=".ArticulosActivity"
+            android:label="@string/title_activity_pedido" />
+        <activity
+            android:name=".ResumenActivity"
+            android:label="@string/ResumenActivity" />
     </application>
 
 </manifest>
