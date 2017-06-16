@@ -4,15 +4,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -26,8 +23,6 @@ import com.example.capadatos.SQLiteHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ResumenActivity extends AppCompatActivity {
     TextView lblNombreClliente;
@@ -43,10 +38,8 @@ public class ResumenActivity extends AppCompatActivity {
     ArrayList<Pedidos> mDetallePedido = new ArrayList<>();
     public SharedPreferences preferences;
     public SharedPreferences.Editor editor;
-    String CodCls,idPedido,bandera = "0",comentario;
-
-    TextView textView;
-    Timer timer;
+    String CodCls,idPedido,bandera = "0";
+    Integer contador = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,25 +65,22 @@ public class ResumenActivity extends AppCompatActivity {
         lblNombreClliente = (TextView) findViewById(R.id.NombreCliente);
         lblNombreVendedor = (TextView) findViewById(R.id.NombreVendedor);
         lblNombreVendedor.setText("");
-        lblNombreClliente.setText(ints.getStringExtra("NombreCliente"));
+        lblNombreClliente.setText("CLIENTE: "+preferences.getString("NameClsSelected"," --ERROR--"));
         countArti = (TextView) findViewById(R.id.txtCountArti);
 
         idPedido = preferences.getString("IDPEDIDO", "");
+        contador = preferences.getInt("CONTADOR", 100);
+
+
 
         if (!idPedido.equals("")){
-
-            Atendio.setText("LE ATENDIO: "+preferences.getString("VENDEDOR",""));
+            Atendio.setText(preferences.getString("NOMBRE",""));
             txtidPedido.setText(idPedido);
             bandera = "1";
-            timer.cancel();
-            LinearLayout mainLayout=(LinearLayout)findViewById(R.id.clockLayout);
-            mainLayout.setVisibility(View.GONE);
         }else{
-
-
-            idPedido = "PEDIDO-" + "P1234";
-            txtidPedido.setText(idPedido);
-            Atendio.setText("LE ATENDIO: VENDEDOR 1");
+            Log.d("", "alderekised: "+contador.toString());
+            txtidPedido.setText(contador.toString());
+            Atendio.setText(preferences.getString("NOMBRE", "VENDEDOR 1"));
         }
         for (Map<String, Object> obj : list){
             vLine     += Float.parseFloat(obj.get("ITEMVALOR").toString().replace(",",""));
@@ -108,8 +98,16 @@ public class ResumenActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if (CodCls!="") {
-                                        //Toast.makeText(ResumenActivity.this, "GUARDANDO CASO: "+bandera, Toast.LENGTH_SHORT).show();
-                                        guardar(list);
+                                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(ResumenActivity.this);
+                                    builder.setMessage("¿GUARDAR PEDIDO?")
+                                            .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    guardar(list);
+                                                }
+                                            }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                        }
+                                    }).create().show();
                                 }else {
                                     Toast.makeText(ResumenActivity.this, "ERROR AL GUARDAR PEDIDO, INTENTELO MAS TARDE", Toast.LENGTH_SHORT).show();
                                 }
@@ -122,23 +120,17 @@ public class ResumenActivity extends AppCompatActivity {
                         }).show();
             }
         });
-
     }
 
     public void guardar(List<Map<String, Object>> list){
-        Float total;
         Total = (TextView) findViewById(R.id.Total);
-        total = Float.parseFloat(Total.getText().toString().replace("TOTAL C$ ",""));
-
-            int key = SQLiteHelper.getId(ManagerURI.getDirDb(), ResumenActivity.this, "PEDIDOS");
-            idPedido = "PEDIDO-" + "P1234";
             Float nTotal = 0.0f;
             for (Map<String, Object> obj : list) {
                 nTotal += Float.parseFloat(obj.get("ITEMVALOR").toString().replace(",",""));
             }
             Pedidos tmp = new Pedidos();
-            tmp.setmIdPedido(idPedido);
-            tmp.setmVendedor(preferences.getString("VENDEDOR", "00"));
+            tmp.setmIdPedido(txtidPedido.getText().toString());
+            tmp.setmVendedor(preferences.getString("NOMBRE", "VENDEDOR 1"));
             tmp.setmCliente(CodCls);
             tmp.setmNombre(preferences.getString("NameClsSelected", " CLIENTE NO ENCONTRADO"));
             tmp.setmFecha("2017-06-30");
@@ -147,6 +139,7 @@ public class ResumenActivity extends AppCompatActivity {
             mPedido.add(tmp);
 
             Pedidos_model.SavePedido(ResumenActivity.this, mPedido);
+
             for (Map<String, Object> obj2 : list) {
                 Pedidos tmpDetalle = new Pedidos();
                 tmpDetalle.setmIdPedido(idPedido);
@@ -156,18 +149,25 @@ public class ResumenActivity extends AppCompatActivity {
                 tmpDetalle.setmPrecio(obj2.get("ITEMVALOR").toString());
 
                 mDetallePedido.add(tmpDetalle);
-
             }
             Pedidos_model.SaveDetallePedido(ResumenActivity.this, mDetallePedido);
-            startActivity(new Intent(ResumenActivity.this,MainActivity.class));
-
-            finish();
+        startActivity(new Intent(ResumenActivity.this,MainActivity.class));
+        finish();
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(ResumenActivity.this,MainActivity.class));
-            finish();
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(ResumenActivity.this);
+            builder.setMessage("¿SE PERDERAN LOS DATOS?")
+                    .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivity(new Intent(ResumenActivity.this,MainActivity.class));
+                            finish();
+                        }
+                    }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                }
+            }).create().show();
             return true;
         }
         return super.onKeyDown(keyCode, event);

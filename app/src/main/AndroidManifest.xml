@@ -36,6 +36,9 @@
         <activity
             android:name=".ResumenActivity"
             android:label="@string/ResumenActivity" />
+        <activity
+            android:name=".BandejaPedidosActivity"
+            android:label="@string/BandejaPedido" />
     </application>
 
 </manifest>

@@ -36,7 +36,24 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_dashboard:
+                case R.id.navigation_dashboard2:
+                    final CharSequence[]items = { "SINCRONIZAR","HISTORIAL PEDIDOS","HISTORIAL COBROS","DESCONECTAR"};
+                    new AlertDialog.Builder(MainActivity.this).setItems(items, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (items[which].equals(items[0])){
+                                Toast.makeText(MainActivity.this, "DATOS SINCRONIZADOS", Toast.LENGTH_SHORT).show();
+                            }else if (items[which].equals(items[1])){
+                                startActivity(new Intent(MainActivity.this,BandejaPedidosActivity.class));
+                            }else if (items[which].equals(items[2])){
+                                Toast.makeText(MainActivity.this, "COBROS", Toast.LENGTH_SHORT).show();
+                            }else if (items[which].equals(items[3])){
+                                editor.putBoolean("logueado", false).commit();
+                                editor.apply();
+                                finish();
+                            }
+                        }
+                    }).create().show();
                     return true;
             }
             return false;
@@ -48,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);*/
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
         setTitle("MIS CLIENTES");

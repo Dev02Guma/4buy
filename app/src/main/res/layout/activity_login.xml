@@ -18,7 +18,8 @@ tools:context="com.example.alderhernandez.a4buy.LoginActivity">
     android:layout_width="200dp"
     android:layout_height="200dp"
     android:layout_marginBottom="16dp"
-    android:layout_marginTop="8dp"/>
+    android:layout_marginTop="8dp"
+    app:srcCompat="@drawable/ic_launcher"/>
 
 
 <ScrollView

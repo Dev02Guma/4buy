@@ -27,12 +27,11 @@ public class Pedidos_model {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("IDPEDIDO" , a.getmIdPedido());
                 contentValues.put("VENDEDOR" , a.getmVendedor());
-                contentValues.put("CLIENTE" , a.getmCliente());
-                contentValues.put("NOMBRE" , a.getmNombre());
-                contentValues.put("FECHA_CREADA" , a.getmFecha());
+                contentValues.put("CODCLIENTE" , a.getmCliente());
+                contentValues.put("CLIENTE" , a.getmNombre());
+                contentValues.put("FECHA" , a.getmFecha());
                 contentValues.put("MONTO" , a.getmPrecio());
                 contentValues.put("ESTADO" , a.getmEstado());
-                contentValues.put("DESCRIPCION" , a.getmComentario());
 
                 myDataBase.insert("PEDIDO", null, contentValues );
             }
@@ -62,8 +61,7 @@ public class Pedidos_model {
                 contentValues.put("ARTICULO" , a.getmArticulo());
                 contentValues.put("DESCRIPCION" , a.getmDescripcion());
                 contentValues.put("CANTIDAD" , a.getmCantidad());
-                contentValues.put("TOTAL" , a.getmPrecio());
-                contentValues.put("BONIFICADO" , a.getmBonificado());
+                contentValues.put("PRECIO" , a.getmPrecio());
 
                 myDataBase.insert("PEDIDO_DETALLE", null, contentValues );
             }
@@ -96,12 +94,11 @@ public class Pedidos_model {
                     Pedidos tmp = new Pedidos();
                     tmp.setmIdPedido(cursor.getString(cursor.getColumnIndex("IDPEDIDO")));
                     tmp.setmVendedor(cursor.getString(cursor.getColumnIndex("VENDEDOR")));
-                    tmp.setmCliente(cursor.getString(cursor.getColumnIndex("CLIENTE")));
-                    tmp.setmNombre(cursor.getString(cursor.getColumnIndex("NOMBRE")));
+                    tmp.setmCliente(cursor.getString(cursor.getColumnIndex("CODCLIENTE")));
+                    tmp.setmNombre(cursor.getString(cursor.getColumnIndex("CLIENTE")));
                     tmp.setmPrecio(cursor.getString(cursor.getColumnIndex("MONTO")));
-                    tmp.setmFecha(cursor.getString(cursor.getColumnIndex("FECHA_CREADA")));
+                    tmp.setmFecha(cursor.getString(cursor.getColumnIndex("FECHA")));
                     tmp.setmEstado(cursor.getString(cursor.getColumnIndex("ESTADO")));
-                    tmp.setmComentario(cursor.getString(cursor.getColumnIndex("DESCRIPCION")));
                     Cursor cursor2 = myDataBase.query(false, "PEDIDO_DETALLE", null, "IDPEDIDO"+ "=?", new String[] { cursor.getString(cursor.getColumnIndex("IDPEDIDO")) }, null, null, null, null);
                     cursor2.moveToFirst();
 
@@ -110,8 +107,7 @@ public class Pedidos_model {
                         tmp.getDetalles().put("ARTICULO"+i,cursor2.getString(cursor2.getColumnIndex("ARTICULO")));
                         tmp.getDetalles().put("DESC"+i,cursor2.getString(cursor2.getColumnIndex("DESCRIPCION")));
                         tmp.getDetalles().put("CANT"+i,cursor2.getString(cursor2.getColumnIndex("CANTIDAD")));
-                        tmp.getDetalles().put("TOTAL"+i,cursor2.getString(cursor2.getColumnIndex("TOTAL")));
-                        tmp.getDetalles().put("BONI"+i,cursor2.getString(cursor2.getColumnIndex("BONIFICADO")));
+                        tmp.getDetalles().put("TOTAL"+i,cursor2.getString(cursor2.getColumnIndex("PRECIO")));
                         i++;
                         cursor2.moveToNext();
                     }
