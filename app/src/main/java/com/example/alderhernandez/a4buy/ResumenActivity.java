@@ -78,10 +78,10 @@ public class ResumenActivity extends AppCompatActivity {
             txtidPedido.setText(idPedido);
             bandera = "1";
         }else{
-            Log.d("", "alderekised: "+contador.toString());
             txtidPedido.setText(contador.toString());
             Atendio.setText(preferences.getString("NOMBRE", "VENDEDOR 1"));
         }
+        //Log.d("", "alderekised: "+Integer.valueOf(contador+1));
         for (Map<String, Object> obj : list){
             vLine     += Float.parseFloat(obj.get("ITEMVALOR").toString().replace(",",""));
         }
@@ -98,16 +98,7 @@ public class ResumenActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if (CodCls!="") {
-                                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(ResumenActivity.this);
-                                    builder.setMessage("¿GUARDAR PEDIDO?")
-                                            .setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int id) {
-                                                    guardar(list);
-                                                }
-                                            }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                        }
-                                    }).create().show();
+                                    guardar(list);
                                 }else {
                                     Toast.makeText(ResumenActivity.this, "ERROR AL GUARDAR PEDIDO, INTENTELO MAS TARDE", Toast.LENGTH_SHORT).show();
                                 }
@@ -142,7 +133,7 @@ public class ResumenActivity extends AppCompatActivity {
 
             for (Map<String, Object> obj2 : list) {
                 Pedidos tmpDetalle = new Pedidos();
-                tmpDetalle.setmIdPedido(idPedido);
+                tmpDetalle.setmIdPedido(txtidPedido.getText().toString());
                 tmpDetalle.setmArticulo(obj2.get("ITEMCODIGO").toString());
                 tmpDetalle.setmDescripcion(obj2.get("ITEMNAME").toString());
                 tmpDetalle.setmCantidad(obj2.get("ITEMCANTI").toString());
@@ -151,6 +142,9 @@ public class ResumenActivity extends AppCompatActivity {
                 mDetallePedido.add(tmpDetalle);
             }
             Pedidos_model.SaveDetallePedido(ResumenActivity.this, mDetallePedido);
+        if (idPedido.equals("")){
+            editor.putInt("CONTADOR",Integer.valueOf(contador+1)).apply();
+        }
         startActivity(new Intent(ResumenActivity.this,MainActivity.class));
         finish();
     }

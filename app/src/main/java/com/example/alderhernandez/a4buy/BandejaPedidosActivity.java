@@ -36,7 +36,7 @@ public class BandejaPedidosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bandeja_pedidos);
 
-        setTitle("PEDIDOS DEL DIA");
+        setTitle("MIS PEDIDOS");
         editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
         if (getSupportActionBar() != null){ getSupportActionBar().setDisplayHomeAsUpEnabled(true); }
         mTotal = (TextView) findViewById(R.id.txtTotalPedidos);
@@ -51,8 +51,7 @@ public class BandejaPedidosActivity extends AppCompatActivity {
                 fList.add(obj);
                 mCalTotal += Float.parseFloat(obj.getmPrecio());
             }
-            //Toast.makeText(this, fList.get(0).toString(), Toast.LENGTH_SHORT).show();
-            mTotal.setText("C$ " + mCalTotal);
+            mTotal.setText("TOTAL: C$ " + mCalTotal);
             listView.setAdapter(new Pedidos_Leads(this, fList));
         }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -69,20 +68,8 @@ public class BandejaPedidosActivity extends AppCompatActivity {
                 editor.putString("CLIENTE",Cliente);
                 editor.putString("ClsSelected",idCliente);
                 editor.apply();
-                //if (ESTADO.equals("0")) {
-                    startActivity(new Intent(BandejaPedidosActivity.this, PedidoActivity.class));
-                    finish();
-                /*}else if (ESTADO.equals("4")){
-                    List<Pedidos> comen = Pedidos_model.getAnulacion(ManagerURI.getDirDb(), BandejaPedidosActivity.this,idPedido);
-                    for(Pedidos obj2 : comen) {
-                        new Notificaciones().Alert(BandejaPedidosActivity.this,"NOTA DE ANULACION",obj2.getmAnulacion()).show();
-                    }
-                }else if (ESTADO.equals("3")){
-                    List<Pedidos> comen = Pedidos_model.getConfirmacion(ManagerURI.getDirDb(), BandejaPedidosActivity.this,idPedido);
-                    for(Pedidos obj2 : comen) {
-                        new Notificaciones().Alert(BandejaPedidosActivity.this,"NOTA DE CONFIRMACION",obj2.getmConfirmacion()).show();
-                    }
-                }*/
+                startActivity(new Intent(BandejaPedidosActivity.this, PedidoActivity.class));
+                finish();
             }
         });
     }

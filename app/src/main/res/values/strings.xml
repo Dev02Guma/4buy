@@ -26,4 +26,5 @@
     <string name="title_activity_articulo">ArticuloActivity</string>
     <string name="ResumenActivity">ResumenActivity</string>
     <string name="BandejaPedido">BandejaPedidoActivity</string>
+    <string name="BandejaCobro">CobroActivity</string>
 </resources>

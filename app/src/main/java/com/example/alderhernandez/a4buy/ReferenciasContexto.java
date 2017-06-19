@@ -7,14 +7,7 @@ import android.content.Context;
  */
 
 public class ReferenciasContexto {
-    private static Context ContextArticulo,ContextClienteMora,ContextActividad;
-
-    public static Context getContextClienteMora() {
-        return ContextClienteMora;
-    }
-    public static void setContextClienteMora(Context contextClienteMora) {
-        ContextClienteMora = contextClienteMora;
-    }
+    private static Context ContextArticulo,ContextActividad;
 
     public static Context getContextArticulo() {
         return ContextArticulo;

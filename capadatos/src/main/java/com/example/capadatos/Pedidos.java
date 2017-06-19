@@ -137,31 +137,6 @@ public class Pedidos {
         return detalles;
     }
 
-    public void setDetalles(JSONObject detalles) {
-        this.detalles = detalles;
-    }
 
-    public ArrayList<HashMap<String, String>> getContactList() {
-        return contactList;
-    }
 
-    public void setContactList(ArrayList<HashMap<String, String>> contactList) {
-        this.contactList = contactList;
-    }
-
-    public String getmAnulacion() {
-        return mAnulacion;
-    }
-
-    public void setmAnulacion(String mAnulacion) {
-        this.mAnulacion = mAnulacion;
-    }
-
-    public String getmConfirmacion() {
-        return mConfirmacion;
-    }
-
-    public void setmConfirmacion(String mConfirmacion) {
-        this.mConfirmacion = mConfirmacion;
-    }
 }

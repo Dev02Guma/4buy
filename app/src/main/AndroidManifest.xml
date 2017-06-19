@@ -39,6 +39,9 @@
         <activity
             android:name=".BandejaPedidosActivity"
             android:label="@string/BandejaPedido" />
+        <activity
+            android:name=".CobroInActivity"
+            android:label="@string/BandejaCobro" />
     </application>
 
 </manifest>

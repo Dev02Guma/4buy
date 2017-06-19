@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("NOMBRE",login.get(0).getmNombre());
                         editor.putString("IDUSUARIO",login.get(0).getmIdUsuario().toString());
                         editor.putInt("CONTADOR",100);
+                        editor.putInt("CONTADOR2",100);
                         editor.putBoolean("logueado", !loged);
                         editor.apply();
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));

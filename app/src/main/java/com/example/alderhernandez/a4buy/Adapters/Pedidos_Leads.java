@@ -49,7 +49,7 @@ public class Pedidos_Leads extends ArrayAdapter<Pedidos> {
 
         ImageView img= (ImageView)convertView.findViewById(R.id.img);
         Integer estado = Integer.valueOf(lead.getmEstado());
-        img.setImageResource(R.drawable.ic_action_discard);
+
 
         return convertView;
     }

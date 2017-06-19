@@ -89,15 +89,17 @@ public class MainActivity extends AppCompatActivity {
                             editor.putString("ClsSelected",mCLientes.getmCodigo());
                             editor.putString("NameClsSelected",mCLientes.getmNombre());
                             editor.apply();
-                            //startActivity(new Intent(MainActivity.this,PedidoActivity.class));
                             startActivity(new Intent(MainActivity.this,PedidoActivity2.class));
                         }else if (items[which].equals(items[1])){
-                            Toast.makeText(MainActivity.this, "COBRO", Toast.LENGTH_SHORT).show();
+                            final Clientes mCLientes = (Clientes) parent.getItemAtPosition(position);
+                            editor.putString("ClsSelected",mCLientes.getmCodigo());
+                            editor.putString("NameClsSelected",mCLientes.getmNombre());
+                            editor.apply();
+                            startActivity(new Intent(MainActivity.this,CobroInActivity.class));
                         }
                     }
                 }).create().show();
             }
         });
     }
-
 }

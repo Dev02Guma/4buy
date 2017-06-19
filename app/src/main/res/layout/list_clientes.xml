@@ -28,8 +28,8 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="15dp"
             android:adjustViewBounds="false"
-            android:tint="@color/black"
-            android:src="@drawable/design_ic_visibility"
+            android:tint="@color/colorAccent"
+            android:src="@drawable/ic_action_person"
             />
         <LinearLayout
             android:layout_marginLeft="10dp"

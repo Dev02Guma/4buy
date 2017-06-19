@@ -131,16 +131,12 @@ public class PedidoActivity2 extends AppCompatActivity {
     }
     public void Refresh(){
         float vLine = 0;
-
-
         listView.setAdapter(
                 new SimpleAdapter(
                         this,
                         list,
                         R.layout.carrito, new String[] {"ITEMNAME", "ITEMCANTI","ITEMCODIGO","ITEMVALOR","PRECIO" },
                         new int[] {R.id.tvListItemName,R.id.Item_cant,R.id.item_codigo,R.id.Item_valor,R.id.tvListItemPrecio}));
-
-
         for (Map<String, Object> obj : list){
             //Log.d("carajo",obj.get("ITEMNAME").toString()+ " "+ obj.get("ITEMVALOR").toString());
             vLine     += Float.parseFloat(obj.get("ITEMVALOR").toString().replace(",",""));
